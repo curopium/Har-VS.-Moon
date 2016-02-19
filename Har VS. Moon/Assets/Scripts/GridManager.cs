@@ -48,6 +48,15 @@ public class GridManager : MonoBehaviour
     // Grabs Game object from TileLibrary
     void Start()
     {
+        tileObject = GameObject.Find("Ground");
+
+        if (tileObject == null)
+        {
+            Debug.Log("Ground not found");
+            return;
+        }
+
+        /*
         TileLibrary tileLibrary = GameObject.Find("TileLibraryObject").GetComponent<TileLibrary>();
         if (tileLibrary != null)
         {
@@ -75,6 +84,7 @@ public class GridManager : MonoBehaviour
             Debug.Log("Tile Library not found");
             return;
         }
+         */
     }
 
     // Update is called once per frame
@@ -129,6 +139,7 @@ public class GridManager : MonoBehaviour
                 Vector2 gridPos = new Vector2(x, y);
 
                 //TODO remove
+                /*
                 TileLibrary tileLibrary = GameObject.Find("TileLibraryObject").GetComponent<TileLibrary>();
                 if (Random.Range(1, 3) == 1)
                 {
@@ -141,9 +152,16 @@ public class GridManager : MonoBehaviour
                     Debug.Log("wall!");
                     tileObject = tileLibrary.findTile("Wall").getTileObject();
                 }
+                 */
+                //tileObject = tileLibrary.findTile("Ground").getTileObject();
+                //GameObject tileObject2;
+                //tileObject2 = GameObject.Find("Ground");
 
                 Tile newTile = new Tile(tileIndex, gridPos, tileObject);
                 //GameObject clone = Instantiate(newTile) as GameObject;
+
+               
+
                 newTile.tileObject.SetActive(false);
 
                 newTile.tileObject = (GameObject)Instantiate(tileObject, Vector2.zero, Quaternion.identity);
