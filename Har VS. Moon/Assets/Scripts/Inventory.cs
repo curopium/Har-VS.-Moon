@@ -3,7 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
-	List<Item> items = new List<Item>(10);
+	public List<Item> items = new List<Item>(10);
+
+	public Inventory(){
+
+	}
 	// Use this for initialization
 	void Start () {
 		
@@ -57,6 +61,18 @@ public class Inventory : MonoBehaviour {
 				return true;
 			}
 		}
+	}
+
+	void RefreshList(){
+		//Remove entries with quantity zero
+		for(int i = 0; i < 10; i++){
+			if(items[i] != null){
+				if(items[i].quantity <= 0){
+					items.RemoveAt(i);
+				}
+			}
+		}
+		items.Capacity = 10;
 	}
 
 	int CheckItem(Item addedItem){

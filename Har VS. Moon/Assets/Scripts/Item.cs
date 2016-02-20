@@ -47,7 +47,16 @@ public class Item : MonoBehaviour {
 			quantity -= removequantity;
 			return new Item (species, itemType, removequantity);
 		} else {
-			return itemtoRemove;
+			return null;
+		}
+	}
+
+	public Item removeItem(){
+		if (quantity > 0) {
+			quantity -= 1;
+			return new Item (species, itemType, 1);
+		} else {
+			return null;
 		}
 	}
 
