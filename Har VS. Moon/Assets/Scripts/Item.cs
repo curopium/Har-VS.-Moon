@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : MonoBehaviour {
+public class Item{
 	//Plant species: light, tree, mouse, snake, bird
 	public string species = "light";
 	//Item types: seed, harvested
@@ -12,17 +12,6 @@ public class Item : MonoBehaviour {
 		species = iSpecies;
 		itemType = iType;
 		quantity = iQuantity;
-		Start ();
-	}
-
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
 	}
 
 	public bool compareItems(Item itemToCompare){

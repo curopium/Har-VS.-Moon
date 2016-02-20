@@ -24,15 +24,17 @@ public class MouseScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		gridController = GameObject.Find ("GridObject").GetComponent<GridManager> ();
-		tileObject = gridController.getTileObject();
+		tileObject = GameObject.Find ("Ground");
 		tileSize = tileObject.GetComponent<Renderer>().bounds.size.x;
 		GameObject inventoryObject = GameObject.Find ("InventoryObject");
 		inventory = inventoryObject.GetComponent<Inventory> ();
+		activeItem = new Item ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		this.transform.position = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, this.transform.position.z);
+		activeItem = new Item ();
 	}
 
 	private Vector2 calcGridPos(Vector2 worldPos)
@@ -49,6 +51,7 @@ public class MouseScript : MonoBehaviour {
 	void mouseReleasedOverEmptyTile(Vector2 gridPos){
 		if (activeItem.itemType == "seed") {
 			gridController.plant (activeItem.species, gridPos);
+			activeItem = null;
 		}
 	}
 
