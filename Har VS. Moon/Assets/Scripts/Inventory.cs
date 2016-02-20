@@ -15,11 +15,15 @@ public class Inventory : MonoBehaviour {
 	}
 
 	bool AddItem(Item addedItem){
-		//if(
-
-		//if (items.Count () >= 10) {
-		//	return false;
-		//}else{
-			
+		//Check if item of same type is in Inventory
+		for(int i = 0; i < 10; i++){
+			if(items[i] != null){
+				if(items[i].compareItems(addedItem) == true){
+					items[i].addItems(addedItem);
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 }
