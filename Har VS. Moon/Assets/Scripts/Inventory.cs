@@ -24,6 +24,35 @@ public class Inventory : MonoBehaviour {
 				}
 			}
 		}
+		//Check if there's space in the Inventory
+		if (items.Count != items.Capacity) {
+			items.Add (addedItem);
+			print (items.Capacity);
+			return true;
+		}
+		//Otherwise nothing happens
 		return false;
 	}
+
+	bool RemoveItem(Item removedItem){
+		//Check if item of same type is in Inventory
+		for(int i = 0; i < 10; i++){
+			if(items[i] != null){
+				if(items[i].compareItems(removedItem) == true){
+					items[i].addItems(removedItem);
+					return true;
+				}
+			}
+		}
+		//Check if there's space in the Inventory
+		if (items.Count != items.Capacity) {
+			items.Add (removedItem);
+			print (items.Capacity);
+			return true;
+		}
+		//Otherwise nothing happens
+		return false;
+	}
+
+
 }
