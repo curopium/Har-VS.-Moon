@@ -219,7 +219,25 @@ public class GridManager : MonoBehaviour
             Tile tile = findTile(_gridPos);
 
             tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
-            tile.plantObject.transform.position = tile.tileObject.transform.position;
+            //tile.plantObject.transform.position = tile.tileObject.transform.position;
+        }
+
+        else if (type == "grass")
+        {
+            //Tile newTile = new Tile(tileIndex, gridPos, tileObject);
+            //newTile.tileObject.SetActive(false);
+            GameObject plant = GameObject.Find("Grass");
+
+            if (plant == null)
+            {
+                Debug.Log("grassplant is null");
+                return;
+            }
+
+            Tile tile = findTile(_gridPos);
+
+            tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+            //tile.plantObject.transform.position = tile.tileObject.transform.position;
         }
     }
 }

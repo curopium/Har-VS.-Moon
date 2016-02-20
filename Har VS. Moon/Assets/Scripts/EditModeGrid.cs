@@ -14,6 +14,8 @@ public class GridEditor : Editor
     public int gridX = 0;
     public int gridY = 0;
 
+    public string plantString;
+
 
     public override void OnInspectorGUI()
     {
@@ -44,12 +46,13 @@ public class GridEditor : Editor
         //EditorGUILayout.BeginHorizontal();
         gridX = EditorGUILayout.IntField("x:", gridX);
         gridY = EditorGUILayout.IntField("y:", gridY);
+        plantString = EditorGUILayout.TextField("plant: ", plantString);
         //EditorGUILayout.EndHorizontal();
 
         if (GUILayout.Button("Plant Solar"))
         {
 
-            myTarget.plant("light", new Vector2(gridX, gridY));
+            myTarget.plant(plantString, new Vector2(gridX, gridY));
 
             //myTarget.setObject(tile);
             //myTarget.createGrid();
