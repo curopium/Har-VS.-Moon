@@ -20,7 +20,7 @@ public class Inventory : MonoBehaviour {
 
 	public bool AddItem(Item addedItem){
 		//Check if item of same type is in Inventory
-		for(int i = 0; i < 10; i++){
+		for(int i = 0; i < items.Count; i++){
 			if(items[i] != null){
 				if(items[i].compareItems(addedItem) == true){
 					//If so, update quantity of item in Inventory

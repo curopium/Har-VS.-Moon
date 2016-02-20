@@ -4,6 +4,10 @@ using System.Collections;
 public class InventorySlotScript : MonoBehaviour {
 	public MouseScript mouseScript;
 	public Item itemInSlot = null;
+	private int tileIndex = 0;
+	public int gridWidth = 5;
+	public int gridHeight = 5;
+
 
 	// Use this for initialization
 	void Start () {
