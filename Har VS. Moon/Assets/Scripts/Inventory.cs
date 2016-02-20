@@ -117,10 +117,10 @@ public class Inventory : MonoBehaviour {
 	}
 
 	public int getSlotIndex(float x, float y){
-
+		return (((int)y * gridWidth) + (int)x);
 	}
 
-	public void createGrid()
+	/*public void createGrid()
 	{
 		Debug.Log("build");
 		for (float x = 0; x < gridHeight; x++)
@@ -148,6 +148,7 @@ public class Inventory : MonoBehaviour {
 				slots.Add(newSlot);
 
 				slotIndex++;
+			}
 		}
-	}
+	}*/
 }
