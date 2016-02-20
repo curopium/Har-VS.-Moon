@@ -26,7 +26,8 @@ public class MouseScript : MonoBehaviour {
 		gridController = GameObject.Find ("GridObject").GetComponent<GridManager> ();
 		tileObject = gridController.getTileObject();
 		tileSize = tileObject.GetComponent<Renderer>().bounds.size.x;
-
+		GameObject inventoryObject = GameObject.Find ("InventoryObject");
+		inventory = inventoryObject.GetComponent<Inventory> ();
 	}
 	
 	// Update is called once per frame

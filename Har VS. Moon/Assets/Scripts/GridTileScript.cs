@@ -2,10 +2,23 @@
 using System.Collections;
 
 public class GridTileScript : MonoBehaviour {
+	public Tile tile;
+	public PolygonCollider2D collider;
+	public MouseScript mouseScript;
+
+	public GridTileScript(Tile thisTile){
+		tile = thisTile;
+	}
+
+	public GridTileScript(){
+
+	}
 
 	// Use this for initialization
 	void Start () {
-		
+		collider = GetComponent<PolygonCollider2D> ();
+		GameObject mouseObject = GameObject.Find ("MouseObject");
+		mouseScript = mouseObject.GetComponent<MouseScript> ();
 	}
 	
 	// Update is called once per frame
@@ -26,7 +39,11 @@ public class GridTileScript : MonoBehaviour {
 		//Find grid position of tile
 		//Locate tile object
 		//Check if tile's plantobject variable is null or not
-		//If so, send message to MouseScript to commence planting
-		Debug.Log ("Plant here!");
+		if (tile.plantObject == null) {
+			//If so, send message to MouseScript to commence planting
+
+			Debug.Log ("Plant here!");
+		}
+
 	}
 }

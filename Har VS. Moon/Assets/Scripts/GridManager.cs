@@ -166,6 +166,8 @@ public class GridManager : MonoBehaviour
                 newTile.tileObject.SetActive(false);
 
                 newTile.tileObject = (GameObject)Instantiate(tileObject, Vector2.zero, Quaternion.identity);
+				GridTileScript tileScript = newTile.tileObject.AddComponent<GridTileScript> () as GridTileScript;
+				tileScript.tile = newTile;
 
                 if (newTile == null)
                 {
