@@ -2,15 +2,21 @@
 using System.Collections;
 
 public class Item : MonoBehaviour {
-	//Item types: seed, harvested
+	//Plant species: light, tree, mouse, snake, bird
 	public string species = "light";
+	//Item types: seed, harvested
 	public string itemType = "seed";
 	public int quantity = 1;
+
+	public Item(string iSpecies = "light", string iType = "seed", int iQuantity = 1){
+		Start (iSpecies, iType, iQuantity);
+	}
+
 	// Use this for initialization
-	void Start (string iSpecies = "light", int iQuantity = 1, string iType = "seed") {
+	void Start (string iSpecies, string iType, int iQuantity) {
 		species = iSpecies;
-		quantity = iQuantity;
 		itemType = iType;
+		quantity = iQuantity;
 	}
 	
 	// Update is called once per frame
@@ -33,11 +39,12 @@ public class Item : MonoBehaviour {
 
 	public Item removeItems(Item itemtoRemove){
 		if (compareItems (itemtoRemove) == true) {
-			quantity -= itemtoRemove.quantity;
-			if (quantity < 1) {
-				quantity = 0;
+			int removequantity = itemtoRemove.quantity;
+			if (quantity - removequantity <= 0) {
+				removequantity = quantity;
 			}
-			return itemtoRemove;
+			quantity -= removequantity;
+			return new Item (species, itemType, removequantity);
 		} else {
 			return itemtoRemove;
 		}
