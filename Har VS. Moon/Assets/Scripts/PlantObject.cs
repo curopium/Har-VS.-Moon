@@ -7,7 +7,10 @@ public class PlantObject : MonoBehaviour {
     public int id;
     public int stages;
     public int hp;
-    public int hunger;
+    public float hunger;
+    public float hungerRate;
+    public bool isHungry;
+    public float starving;
     public int age;
     public int currentStage;
     public bool growing;
@@ -19,6 +22,7 @@ public class PlantObject : MonoBehaviour {
     public GameObject stage3;
     public GameObject stage4;
     public GameObject item;
+    public GameObject hungryIcon;
 
     public int growTime1;
     public int growTime2;
@@ -41,6 +45,7 @@ public class PlantObject : MonoBehaviour {
         stage3.SetActive(false);
         stage4.SetActive(false);
         item.SetActive(false);
+        hungryIcon.SetActive(false);
 
         worldManager = GameObject.Find("World").GetComponent<WorldManager>();
 	}
@@ -59,17 +64,29 @@ public class PlantObject : MonoBehaviour {
             }
 
         }
+
 	}
 
 
 
     void grow()
     {
-        age = age + 1;
-        hunger = hunger - 1;
+        
+        hunger = hunger - hungerRate;
+        if (hunger < starving)
+        {
+            hungryIcon.SetActive(true);
+            isHungry = true;
+        }
+        else
+        {
+            hungryIcon.SetActive(false);
+            isHungry = false;
+        }
+        timer = 0;
+        
 
-            timer = 0;
-            
+        age = age + 1;  
         if (age == growTime1)
         {
             currentPlantObject = stage2;

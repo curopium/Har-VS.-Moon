@@ -28,6 +28,12 @@ public class HarvestablePlant : MonoBehaviour {
             {
                 plant.stage4.SetActive(false);
                 plant.item.SetActive(true);
+                plant.hungryIcon.SetActive(false);
+                plant.currentPlantObject = plant.item;
+
+                //stop starving!
+                plant.hunger = 100;
+                plant.hungerRate = 0;
             }
         }
 
