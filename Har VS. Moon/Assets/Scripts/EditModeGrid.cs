@@ -11,6 +11,9 @@ public class GridEditor : Editor
     public GameObject tile;
     public int width = 10;
     public int height = 10;
+    public int gridX = 0;
+    public int gridY = 0;
+
 
     public override void OnInspectorGUI()
     {
@@ -19,10 +22,10 @@ public class GridEditor : Editor
         //base.OnInspectorGUI();
         //EditorGUILayout.PrefixLabel("Build Grid");
 
-        EditorGUILayout.BeginHorizontal();
+        //EditorGUILayout.BeginHorizontal();
         width = EditorGUILayout.IntField("width:", width);
         height = EditorGUILayout.IntField("height:", height);
-        EditorGUILayout.EndHorizontal();
+        //EditorGUILayout.EndHorizontal();
 
         //EditorGUILayout.ObjectField("tile:", tile, typeof(GameObject),true);
         //tile = EditorGUILayout.ObjectField("tile:", tile, typeof(GameObject), true) as GameObject;
@@ -36,6 +39,22 @@ public class GridEditor : Editor
             myTarget.createGrid();
 
             myTarget.drawGrid();
+        }
+
+        //EditorGUILayout.BeginHorizontal();
+        gridX = EditorGUILayout.IntField("x:", gridX);
+        gridY = EditorGUILayout.IntField("y:", gridY);
+        //EditorGUILayout.EndHorizontal();
+
+        if (GUILayout.Button("Plant Solar"))
+        {
+
+            myTarget.plant("light", new Vector2(gridX, gridY));
+
+            //myTarget.setObject(tile);
+            //myTarget.createGrid();
+
+            //myTarget.drawGrid();
         }
 
     }

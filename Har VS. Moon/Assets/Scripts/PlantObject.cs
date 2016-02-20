@@ -31,7 +31,9 @@ public class PlantObject : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        age = 0;
         timer = 0;
+        stage1.SetActive(true);
         stage2.SetActive(false);
         stage3.SetActive(false);
         stage4.SetActive(false);

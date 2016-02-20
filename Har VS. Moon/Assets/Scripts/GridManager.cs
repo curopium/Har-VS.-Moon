@@ -8,6 +8,7 @@ public class Tile
     public int type;
     public Vector2 gridPosition;
     public GameObject tileObject;
+    public GameObject plantObject;
 
     public Tile(int _id, Vector2 _gridPosition, GameObject _tileObject)
     {
@@ -199,6 +200,26 @@ public class GridManager : MonoBehaviour
         }
 
         gridLayer.drawGrid();
+    }
+
+    public void plant(string type, Vector2 _gridPos)
+    {
+        if (type == "light")
+        {
+            //Tile newTile = new Tile(tileIndex, gridPos, tileObject);
+            //newTile.tileObject.SetActive(false);
+            GameObject plant = GameObject.Find("LightBulb");
+
+            if (plant == null)
+            {
+                Debug.Log("solarplant is null");
+                return;
+            }
+
+            Tile tile = findTile(_gridPos);
+
+            tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+        }
     }
 }
 
