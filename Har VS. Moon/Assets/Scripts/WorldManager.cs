@@ -4,13 +4,14 @@ using System.Collections;
 public class WorldManager : MonoBehaviour {
 
     public float time;
-    public float speed; 
+    public float speed;
+    public int cheese;
 
 	// Use this for initialization
 	void Start () {
         //time += Time.deltaTime;
         //speed = 1;
-
+        cheese = 100;
         
 	}
 
