@@ -2,12 +2,17 @@
 using System.Collections;
 
 public class InventorySlotScript : MonoBehaviour {
+	public GameObject slotObject;
 	public MouseScript mouseScript;
 	public Item itemInSlot = null;
-	private int tileIndex = 0;
-	public int gridWidth = 5;
-	public int gridHeight = 5;
 
+	public InventorySlotScript(GameObject _slotObject){
+		slotObject = _slotObject;
+	}
+
+	public InventorySlotScript(){
+		
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +27,7 @@ public class InventorySlotScript : MonoBehaviour {
 
 	void OnMouseDown(){
 		if (itemInSlot != null) {
-			//mouseScript.SendMessage("mousePressedOnValidItem", IList);
+			mouseScript.SendMessage("mousePressedOnValidItem", itemInSlot);
 		}
 	}
 }

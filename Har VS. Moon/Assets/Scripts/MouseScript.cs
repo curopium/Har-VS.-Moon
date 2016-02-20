@@ -36,7 +36,6 @@ public class MouseScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		this.transform.position = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, this.transform.position.z);
-		activeItem = new Item ();
 		if (mouseDown) {
 			if (Input.GetMouseButton (0) == false) {
 				//If mouse was just pressed
@@ -77,7 +76,13 @@ public class MouseScript : MonoBehaviour {
 
 	//Receive message with inventory index if slot is valid object
 	//Change active item to one of what seed/harvested product was selected and update inventory
-	void mousePressedOnValidItem(int itemindex){
-		//activeItem = inventory.items [itemindex].removeItem ();
+	void mousePressedOnValidItem(Item itemToTake){
+		int index = inventory.CheckItem (itemToTake);
+		if (index != -1) {
+			activeItem = inventory.items [index].removeItem ();
+			inventory.RefreshList ();
+		} else {
+			Debug.Log ("Slot and Item list inconsistency");
+		}
 	}
 }
