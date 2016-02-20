@@ -18,7 +18,7 @@ public class Inventory : MonoBehaviour {
 		
 	}
 
-	bool AddItem(Item addedItem){
+	public bool AddItem(Item addedItem){
 		//Check if item of same type is in Inventory
 		for(int i = 0; i < 10; i++){
 			if(items[i] != null){
@@ -42,7 +42,7 @@ public class Inventory : MonoBehaviour {
 		return false;
 	}
 
-	bool RemoveItem(Item removedItem){
+	public bool RemoveItem(Item removedItem){
 		//Return true if successful, false if something goes wrong
 		//Check if item of same type is in Inventory. If so, get index
 		int rIndex = CheckItem(removedItem);
@@ -63,7 +63,7 @@ public class Inventory : MonoBehaviour {
 		}
 	}
 
-	void RefreshList(){
+	public void RefreshList(){
 		//Remove entries with quantity zero
 		for(int i = 0; i < 10; i++){
 			if(items[i] != null){
@@ -75,7 +75,7 @@ public class Inventory : MonoBehaviour {
 		items.Capacity = 10;
 	}
 
-	int CheckItem(Item addedItem){
+	public int CheckItem(Item addedItem){
 		//Check if item of same type is in Inventory and return index of item if so
 		for(int i = 0; i < 10; i++){
 			if(items[i] != null){

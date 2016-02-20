@@ -20,6 +20,8 @@ public class MouseScript : MonoBehaviour {
 	public Item activeItem = null;
 	public GameObject tileObject;
 	public float tileSize;
+	public bool mouseDown = false;
+	public int mouseReleaseTimer = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -35,6 +37,24 @@ public class MouseScript : MonoBehaviour {
 	void Update () {
 		this.transform.position = new Vector3 (Input.mousePosition.x, Input.mousePosition.y, this.transform.position.z);
 		activeItem = new Item ();
+		if (mouseDown) {
+			if (Input.GetMouseButton (0) == false) {
+				//If mouse was just pressed
+				//Give a frame or two for other scripts to fire off before checking if active item was used up or not
+				mouseReleaseTimer = 3;
+			}
+		} else {
+			if (mouseReleaseTimer > 0) {
+				mouseReleaseTimer--;
+			} else if (mouseReleaseTimer == 0) {
+				mouseReleaseTimer--;
+				//Timer has gone. If active item was not used up, return it to its location in the inventory
+				if (activeItem != null) {
+					inventory.AddItem (activeItem);
+					activeItem = null;
+				}
+			}
+		}
 	}
 
 	private Vector2 calcGridPos(Vector2 worldPos)
@@ -58,6 +78,6 @@ public class MouseScript : MonoBehaviour {
 	//Receive message with inventory index if slot is valid object
 	//Change active item to one of what seed/harvested product was selected and update inventory
 	void mousePressedOnValidItem(int itemindex){
-		activeItem = inventory.items [itemindex].removeItem ();
+		//activeItem = inventory.items [itemindex].removeItem ();
 	}
 }
