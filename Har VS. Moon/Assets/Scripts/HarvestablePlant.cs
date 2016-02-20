@@ -20,7 +20,7 @@ public class HarvestablePlant : MonoBehaviour {
 
     void OnMouseDown()
     {
-        Debug.Log("hello");
+        //Debug.Log("hello");
         if (Input.GetMouseButtonDown(0))
         {
             //Debug.Log("hello");
