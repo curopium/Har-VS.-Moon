@@ -9,14 +9,15 @@ public class Item : MonoBehaviour {
 	public int quantity = 1;
 
 	public Item(string iSpecies = "light", string iType = "seed", int iQuantity = 1){
-		Start (iSpecies, iType, iQuantity);
-	}
-
-	// Use this for initialization
-	void Start (string iSpecies, string iType, int iQuantity) {
 		species = iSpecies;
 		itemType = iType;
 		quantity = iQuantity;
+		Start ();
+	}
+
+	// Use this for initialization
+	void Start () {
+		
 	}
 	
 	// Update is called once per frame
