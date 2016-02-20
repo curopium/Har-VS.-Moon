@@ -28,6 +28,7 @@ public class HarvestablePlant : MonoBehaviour {
             {
                 plant.stage4.SetActive(false);
                 plant.item.SetActive(true);
+                plant.currentPlantObject = plant.item;
             }
         }
 
