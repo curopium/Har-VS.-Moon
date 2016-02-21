@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour {
-	public List<Item> items = new List<Item> (10);
-	public List<InventorySlotScript> slots = new List<InventorySlotScript> (10);
-	public int capacity = 10;
+	public List<Item> items = new List<Item> ();
+	public List<InventorySlotScript> slots = new List<InventorySlotScript> ();
+	public int capacity = 20;
 
 	public int gridWidth = 10;
 	public int gridHeight = 2;
@@ -13,8 +13,8 @@ public class Inventory : MonoBehaviour {
 	public GameObject slotObject;
 
 	public Inventory(){
-		items = new List<Item> (capacity);
-		slots = new List<InventorySlotScript> (capacity);
+		items = new List<Item> ();
+		slots = new List<InventorySlotScript> ();
 	}
 	// Use this for initialization
 	void Start () {
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour {
 		print ("slots");
 		print (slots.Count);
 
-		RefreshList ();
+		//RefreshList ();
 	}
 
 	public bool AddItem(Item addedItem){
@@ -47,22 +47,24 @@ public class Inventory : MonoBehaviour {
 					//If so, update quantity of item in Inventory
 					items[i].addItems(addedItem);
 					slots [i].setItem (addedItem);
+					RefreshList ();
 					return true;
 				}
 			}
 		}
 		//If item not found in Inventory, check if there's space in the Inventory
-		if (items.Count != items.Capacity) {
+		if (items.Count != capacity) {
 			//If so, add a new instance of that item's type, then
 			//readjust the list's capacity for the sake of consistency
 			items.Add (addedItem);
-			items.Capacity = capacity;
+			//items.Capacity = capacity;
 			print (items.Capacity);
 			//Update slots
 			int index = items.Count - 1;
 			slots [index].setItem (addedItem);
 			print ("Count: ");
 			print (items.Count);
+			RefreshList ();
 			return true;
 		}
 		//Otherwise nothing happens and the operation has failed
@@ -84,7 +86,9 @@ public class Inventory : MonoBehaviour {
 				items [rIndex].removeItems (removedItem);
 				//If new quantity is 0 remove item from inventory completely and set size of list back to intended value
 				items.RemoveAt(rIndex);
-				items.Capacity = capacity;
+				slots [rIndex].clearItem ();
+				//items.Capacity = capacity;
+				RefreshList();
 				return true;
 			}
 		}
@@ -94,12 +98,15 @@ public class Inventory : MonoBehaviour {
 		//Remove entries with quantity zero
 		for(int i = 0; i < items.Count; i++){
 			if(items[i] != null){
-				if(items[i].quantity <= 0){
-					items.RemoveAt(i);
+				if (items [i].quantity <= 0) {
+					items.RemoveAt (i);
+					slots [i].clearItem ();
+				} else {
+					
 				}
 			}
 		}
-		items.Capacity = capacity;
+		//items.Capacity = capacity;
 		//Keep contents of inventory slots up to date
 		for (int i = 0; i < slots.Capacity; i++) {
 			if (i >= items.Count) {
@@ -154,7 +161,8 @@ public class Inventory : MonoBehaviour {
 					Debug.Log ("Slot is null");
 					return;
 				}
-
+				print (slots.Count);
+				print (slots.Capacity);
 				slots.Add (newSlotObject.GetComponent<InventorySlotScript> ());
 			}
 		}

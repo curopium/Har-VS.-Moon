@@ -7,9 +7,9 @@ public class ItemDrop : MonoBehaviour {
     public float moveSpeed = 0.1f;
 	public MouseScript mouseScript;
     public PlantObject plantObject;
-    GameObject parent;
-	int timerSinceDragRelease = -1;
-	Vector3 originalPosition;
+    public GameObject parent;
+	public int timerSinceDragRelease = -1;
+	public Vector3 originalPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -43,6 +43,7 @@ public class ItemDrop : MonoBehaviour {
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
 
+		mouseScript.itemDrag = this;
         mouseScript.setActiveItem(plantObject.harvestedProduct);
 
 		timerSinceDragRelease = 4;

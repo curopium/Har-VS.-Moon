@@ -6,6 +6,7 @@ public class InventorySlotScript : MonoBehaviour {
 	public Vector2 gridPos;
 	public Item itemInSlot = null;
 	public GameObject itemObject = null;
+	public ItemDrop itemDrop = null;
 
 	public InventorySlotScript(){
 		
@@ -26,58 +27,23 @@ public class InventorySlotScript : MonoBehaviour {
 		itemInSlot = itemToSet;
 		if (itemToSet.seedState == true) {
 			if (itemToSet.species == "light") {
-				GameObject item = GameObject.Find ("LightBulb");
-				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
-				plObject.stage1.SetActive (false);
-				plObject.stage2.SetActive (false);
-				plObject.stage3.SetActive (false);
-				plObject.stage4.SetActive (false);
-				plObject.item.SetActive (false);
-				plObject.seed.SetActive (true);
-				plObject.growing = false;
+				
 			} else if (itemToSet.species == "grass") {
-				GameObject item = GameObject.Find ("Grass");
-				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
-				plObject.stage1.SetActive (false);
-				plObject.stage2.SetActive (false);
-				plObject.stage3.SetActive (false);
-				plObject.stage4.SetActive (false);
-				plObject.item.SetActive (false);
-				plObject.seed.SetActive (true);
-				plObject.growing = false;
+				
 			}
 		} else {
 			if (itemToSet.species == "light") {
-				GameObject item = GameObject.Find ("LightBulb");
-				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
-				plObject.stage1.SetActive (false);
-				plObject.stage2.SetActive (false);
-				plObject.stage3.SetActive (false);
-				plObject.stage4.SetActive (false);
-				plObject.item.SetActive (true);
-				plObject.seed.SetActive (false);
-				plObject.growing = false;
+				
 			} else if (itemToSet.species == "grass") {
-				GameObject item = GameObject.Find ("Grass");
-				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
-				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
-				plObject.stage1.SetActive (false);
-				plObject.stage2.SetActive (false);
-				plObject.stage3.SetActive (false);
-				plObject.stage4.SetActive (false);
-				plObject.item.SetActive (true);
-				plObject.seed.SetActive (false);
-				plObject.growing = false;
+				
 			}
 		}
 	}
 
-	void clearItem(){
+	public void clearItem(){
 		itemInSlot = null;
 		itemObject = null;
+		itemDrop = null;
 	}
 
 	void OnMouseDown(){
@@ -89,5 +55,15 @@ public class InventorySlotScript : MonoBehaviour {
 	void OnMouseUp(){
 		//If inventory can add item, store item in inventory, else return it to its source
 		mouseScript.SendMessage("mouseReleasedOverInventory");
+		GameObject inventoryObject = GameObject.Find ("InventoryObject");
+		Inventory inventory = inventoryObject.GetComponent<Inventory> ();
+	}
+
+	void OnTriggerStay2D(Collider2D col)
+	{
+		if (Input.GetMouseButtonUp (0)) {
+			mouseScript.itemDrag.originalPosition = transform.position;
+			itemDrop = mouseScript.itemDrag;
+		}
 	}
 }

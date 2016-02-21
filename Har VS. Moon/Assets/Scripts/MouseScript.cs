@@ -17,7 +17,7 @@ public class MouseScript : MonoBehaviour {
 
 	public Inventory inventory;
 	public GridManager gridController;
-	public Item activeItem = null;
+	public Item activeItem;
 	public GameObject tileObject;
 	public float tileSize;
 	public bool mouseDown = false;
@@ -60,6 +60,7 @@ public class MouseScript : MonoBehaviour {
 			mouseDown = true;
 		} else {
 			mouseDown = false;
+			itemDrag = null;
 		}
 	}
 
@@ -94,8 +95,10 @@ public class MouseScript : MonoBehaviour {
 			//If inventory can add item
 			if (inventory.AddItem (activeItem) == true) {
 				activeItem = null;
-				itemDrag = null;
 				mouseReleaseTimer = -1;
+				Destroy (itemDrag.parent);
+				activeItem = null;
+				itemDrag = null;
 			} else {
 				//Otherwise return item to its source
 				returnActiveItem();
