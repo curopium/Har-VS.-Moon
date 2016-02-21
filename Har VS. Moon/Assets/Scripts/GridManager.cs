@@ -227,8 +227,14 @@ public class GridManager : MonoBehaviour
             }
 
             Tile tile = findTile(_gridPos);
+            if(tile.plantObject == null)
+            {
+                tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+            }
+            else
+            {
 
-            tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+            }
             //tile.plantObject.transform.position = tile.tileObject.transform.position;
         }
 
@@ -246,10 +252,17 @@ public class GridManager : MonoBehaviour
 
             Tile tile = findTile(_gridPos);
 
-            tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
-            PlantObject plantScript = tile.plantObject.GetComponent<PlantObject>();
-            //hacky solution
-            plantScript.hungerRate = 2;
+            if (tile.plantObject == null)
+            {
+                tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+                PlantObject plantScript = tile.plantObject.GetComponent<PlantObject>();
+                //hacky solution
+                plantScript.hungerRate = 2;
+            }
+            else
+            {
+
+            }
         }
         else if (type == "mouse")
         {
@@ -265,10 +278,17 @@ public class GridManager : MonoBehaviour
 
             Tile tile = findTile(_gridPos);
 
-            tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
-            PlantObject plantScript = tile.plantObject.GetComponent<PlantObject>();
-            //hacky solution
-            plantScript.hungerRate = 2;
+            if (tile.plantObject == null)
+            {
+                tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+                PlantObject plantScript = tile.plantObject.GetComponent<PlantObject>();
+                //hacky solution
+                plantScript.hungerRate = 2;
+            }
+            else
+            {
+
+            }
 
             //tile.plantObject.
             //tile.plantObject.transform.position = tile.tileObject.transform.position;
