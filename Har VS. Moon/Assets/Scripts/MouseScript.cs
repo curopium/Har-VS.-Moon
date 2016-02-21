@@ -23,6 +23,7 @@ public class MouseScript : MonoBehaviour {
 	public bool mouseDown = false;
 	public int mouseReleaseTimer = 0;
 	public Vector2 returnGridPos;
+	public ItemDrop itemDrag = null;
 
 	// Use this for initialization
 	void Start () {
@@ -77,17 +78,19 @@ public class MouseScript : MonoBehaviour {
 			if (activeItem.seedState == true) {
 				gridController.plant (activeItem.species, gridPos);
 				activeItem = null;
+				mouseReleaseTimer = -1;
 			}
 		}
 	}
 
-	void mouseReleasedOverInventory(Vector2 gridPos){
+	void mouseReleasedOverInventory(){
 		//If there is an active item
 		if (activeItem != null) {
 			//If inventory can add item
 			if (inventory.AddItem (activeItem) == true) {
-				gridController.plant (activeItem.species, gridPos);
 				activeItem = null;
+				itemDrag = null;
+				mouseReleaseTimer = -1;
 			} else {
 				//Otherwise return item to its source
 				returnActiveItem();
@@ -101,6 +104,7 @@ public class MouseScript : MonoBehaviour {
 			//If not from farm return to inventory
 			inventory.AddItem (activeItem);
 			activeItem = null;
+			itemDrag = null;
 		} else {
 			//Return to farm tile
 			//Reset collected tile's plantobject back to its freshly harvested state on its own square
@@ -114,6 +118,8 @@ public class MouseScript : MonoBehaviour {
 		if (index != -1) {
 			activeItem = inventory.items [index].removeItem ();
 			inventory.RefreshList ();
+			print (itemToTake.species);
+			print (itemToTake.seedState);
 		} else {
 			Debug.Log ("Slot and Item list inconsistency");
 		}

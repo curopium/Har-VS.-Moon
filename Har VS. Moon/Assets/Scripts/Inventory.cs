@@ -41,6 +41,7 @@ public class Inventory : MonoBehaviour {
 				if(items[i].compareItems(addedItem) == true){
 					//If so, update quantity of item in Inventory
 					items[i].addItems(addedItem);
+					slots [i].setItem (addedItem);
 					return true;
 				}
 			}
@@ -52,6 +53,8 @@ public class Inventory : MonoBehaviour {
 			items.Add (addedItem);
 			items.Capacity = capacity;
 			print (items.Capacity);
+			print ("Count: ");
+			print (items.Count);
 			return true;
 		}
 		//Otherwise nothing happens and the operation has failed
@@ -95,6 +98,7 @@ public class Inventory : MonoBehaviour {
 				slots [i].itemInSlot = null;
 			} else {
 				slots [i].itemInSlot = items [i];
+				//slots [i].setItem (items [i]);
 			}
 		}
 	}

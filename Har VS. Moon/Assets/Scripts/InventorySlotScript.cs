@@ -22,7 +22,8 @@ public class InventorySlotScript : MonoBehaviour {
 	
 	}
 
-	void setItem(Item itemToSet){
+	public void setItem(Item itemToSet){
+		itemInSlot = itemToSet;
 		if (itemToSet.seedState == true) {
 			if (itemToSet.species == "light") {
 				GameObject item = GameObject.Find ("LightBulb");
@@ -83,6 +84,6 @@ public class InventorySlotScript : MonoBehaviour {
 
 	void OnMouseUp(){
 		//If inventory can add item, store item in inventory, else return it to its source
-		mouseScript.SendMessage("mouseReleasedOverInventory", gridPos);
+		mouseScript.SendMessage("mouseReleasedOverInventory");
 	}
 }
