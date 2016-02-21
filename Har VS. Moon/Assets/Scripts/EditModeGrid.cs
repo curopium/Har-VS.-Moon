@@ -14,7 +14,7 @@ public class GridEditor : Editor
     public int gridX = 0;
     public int gridY = 0;
 
-    public string plantString;
+    public string plantString = "light";
 
 
     public override void OnInspectorGUI()
