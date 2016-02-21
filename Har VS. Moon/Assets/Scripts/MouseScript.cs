@@ -22,6 +22,7 @@ public class MouseScript : MonoBehaviour {
 	public float tileSize;
 	public bool mouseDown = false;
 	public int mouseReleaseTimer = 0;
+	public Vector2 returnGridPos = null;
 
 	// Use this for initialization
 	void Start () {
@@ -47,7 +48,7 @@ public class MouseScript : MonoBehaviour {
 				mouseReleaseTimer--;
 			} else if (mouseReleaseTimer == 0) {
 				mouseReleaseTimer--;
-				//Timer has gone. If active item was not used up, return it to its location in the inventory
+				//Timer has gone. If active item was not used up, return it to its location in the inventory or farm
 				if (activeItem != null) {
 					inventory.AddItem (activeItem);
 					activeItem = null;
@@ -77,6 +78,32 @@ public class MouseScript : MonoBehaviour {
 				gridController.plant (activeItem.species, gridPos);
 				activeItem = null;
 			}
+		}
+	}
+
+	void mouseReleasedOverInventory(Vector2 gridPos){
+		//If there is an active item
+		if (activeItem != null) {
+			//If inventory can add item
+			if (inventory.AddItem (activeItem) == true) {
+				gridController.plant (activeItem.species, gridPos);
+				activeItem = null;
+			} else {
+				//Otherwise return item to its source
+				returnActiveItem();
+			}
+		}
+	}
+
+	void returnActiveItem(){
+		//Determine source
+		if (returnGridPos == null) {
+			//If not from farm return to inventory
+			inventory.AddItem (activeItem);
+			activeItem = null;
+		} else {
+			//Return to farm tile
+			//Reset collected tile's plantobject back to its freshly harvested state on its own square
 		}
 	}
 

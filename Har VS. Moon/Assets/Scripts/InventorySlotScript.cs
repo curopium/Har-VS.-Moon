@@ -27,21 +27,62 @@ public class InventorySlotScript : MonoBehaviour {
 			if (itemToSet.species == "light") {
 				GameObject item = GameObject.Find ("LightBulb");
 				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
+				plObject.stage1.SetActive (false);
+				plObject.stage2.SetActive (false);
+				plObject.stage3.SetActive (false);
+				plObject.stage4.SetActive (false);
+				plObject.item.SetActive (false);
+				plObject.seed.SetActive (true);
 			} else if (itemToSet.species == "grass") {
-
+				GameObject item = GameObject.Find ("Grass");
+				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
+				plObject.stage1.SetActive (false);
+				plObject.stage2.SetActive (false);
+				plObject.stage3.SetActive (false);
+				plObject.stage4.SetActive (false);
+				plObject.item.SetActive (false);
+				plObject.seed.SetActive (true);
 			}
 		} else {
 			if (itemToSet.species == "light") {
-
+				GameObject item = GameObject.Find ("LightBulb");
+				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
+				plObject.stage1.SetActive (false);
+				plObject.stage2.SetActive (false);
+				plObject.stage3.SetActive (false);
+				plObject.stage4.SetActive (false);
+				plObject.item.SetActive (true);
+				plObject.seed.SetActive (false);
 			} else if (itemToSet.species == "grass") {
-
+				GameObject item = GameObject.Find ("Grass");
+				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
+				PlantObject plObject = itemObject.GetComponent<PlantObject> ();
+				plObject.stage1.SetActive (false);
+				plObject.stage2.SetActive (false);
+				plObject.stage3.SetActive (false);
+				plObject.stage4.SetActive (false);
+				plObject.item.SetActive (true);
+				plObject.seed.SetActive (false);
 			}
 		}
+	}
+
+	void clearItem(){
+		itemInSlot = null;
+		itemObject = null;
 	}
 
 	void OnMouseDown(){
 		if (itemInSlot != null) {
 			mouseScript.SendMessage("mousePressedOnValidItem", itemInSlot);
 		}
+	}
+
+	void OnMouseUp(){
+		//If inventory can add item, store item in inventory, else return it to its source
+		mouseScript.SendMessage("mouseReleasedOverInventory", gridPos);
 	}
 }

@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
 	public List<InventorySlotScript> slots = new List<InventorySlotScript> (10);
 	public int capacity = 10;
 
-	public int gridWidth = 5;
+	public int gridWidth = 10;
 	public int gridHeight = 2;
 	public float tileSize;
 	public GameObject slotObject;
@@ -124,7 +124,7 @@ public class Inventory : MonoBehaviour {
 
 	public void createGrid()
 	{
-		setSize (10, 1);
+		setSize (10, 2);
 		for (float x = 0; x < gridWidth; x++)
 		{
 			for (float y = 0; y < gridHeight; y++)
