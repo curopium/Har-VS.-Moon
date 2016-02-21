@@ -29,9 +29,9 @@ public class BuyScript : MonoBehaviour {
 
     void OnMouseDown()
     {
-        if (worldManager.cheese > cost)
-        {
-            worldManager.cheese = worldManager.cheese - cost;
-        }
+        //if (worldManager.cheese > cost)
+       // {
+       //     worldManager.cheese = worldManager.cheese - cost;
+      //  }
     }
 }

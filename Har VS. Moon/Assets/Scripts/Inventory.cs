@@ -30,10 +30,10 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		print ("items");
-		print (items.Count);
-		print ("slots");
-		print (slots.Count);
+		//print ("items");
+		//print (items.Count);
+		//print ("slots");
+		//print (slots.Count);
 
 		//RefreshList ();
 	}
