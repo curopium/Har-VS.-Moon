@@ -22,7 +22,7 @@ public class MouseScript : MonoBehaviour {
 	public float tileSize;
 	public bool mouseDown = false;
 	public int mouseReleaseTimer = 0;
-	public Vector2 returnGridPos = null;
+	public Vector2 returnGridPos;
 
 	// Use this for initialization
 	void Start () {

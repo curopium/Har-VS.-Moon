@@ -9,6 +9,8 @@ public class ItemDrop : MonoBehaviour {
 	public MouseScript mouseScript;
     public PlantObject plantObject;
     GameObject parent;
+	int timerSinceDragRelease = -1;
+	Vector3 originalPosition;
 
 	// Use this for initialization
 	void Start () {
@@ -17,14 +19,21 @@ public class ItemDrop : MonoBehaviour {
 		mouseScript = mouseObject.GetComponent<MouseScript> ();
         parent = transform.parent.gameObject;
         plantObject = parent.GetComponent<PlantObject>();
+		originalPosition = transform.position;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-            
-       // }
+        if (Input.GetMouseButtonDown(0) == false)
+        {
+			timerSinceDragRelease--;
+			if (timerSinceDragRelease == 0) {
+				//Just stopped being dragged, return to former location on farm
+				transform.position = originalPosition;
+
+				timerSinceDragRelease--;
+			}
+       	}
 	}
 
     void OnMouseDrag()
@@ -37,6 +46,6 @@ public class ItemDrop : MonoBehaviour {
 
         mouseScript.setActiveItem(plantObject.harvestedProduct);
 
-
+		timerSinceDragRelease = 4;
     }
 }
