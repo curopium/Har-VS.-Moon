@@ -10,6 +10,8 @@ public class MoonScript : MonoBehaviour {
     public GameObject moonObject;
     public bool gameEnded = false;
 
+    public ItemDrop currentItem;
+
 	// Use this for initialization
 	void Start () {
         endTime *= world.speed;
@@ -25,6 +27,7 @@ public class MoonScript : MonoBehaviour {
             {
                 moonObject.transform.position = endPosition.transform.position;
                 gameEnded = true;
+                world.endGame();
             }
             else
             {
@@ -32,4 +35,23 @@ public class MoonScript : MonoBehaviour {
             }
         }
 	}
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        //plantObject.feed( 
+        //Debug.Log("ahhh!");
+        currentItem = col.gameObject.GetComponent<ItemDrop>();
+
+        Debug.Log("moooon!");
+
+        if (currentItem)
+        {
+            if (currentItem.plantObject.species == "mouse")
+            {
+                Debug.Log("win!");
+                Destroy(gameObject);
+                world.cheese = world.cheese + 1000000;
+            }
+        }
+    }
 }

@@ -7,12 +7,14 @@ public class WorldManager : MonoBehaviour {
     public float speed;
     public int cheese;
 
+    public GameObject endScene;
+
 	// Use this for initialization
 	void Start () {
         //time += Time.deltaTime;
         //speed = 1;
         //cheese = 100;
-        
+        endScene.SetActive(false);
 	}
 
     void FixedUpdate(){
@@ -32,6 +34,11 @@ public class WorldManager : MonoBehaviour {
     public float getDeltaTime()
     {
         return (Time.deltaTime * speed);
+    }
+
+    public void endGame()
+    {
+        endScene.SetActive(true);
     }
 
 }
