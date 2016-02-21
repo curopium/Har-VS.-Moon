@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+
 public class PlantObject : MonoBehaviour {
 
     public int id;
@@ -18,6 +20,7 @@ public class PlantObject : MonoBehaviour {
     //public List<GameObject> plantObjects = new List<GameObject>();
 	public string species;
 	public Item harvestedProduct;
+    public List<string> canEat = new List<string>();
 
     public GameObject stage1;
     public GameObject stage2;
@@ -71,6 +74,14 @@ public class PlantObject : MonoBehaviour {
 
 	}
 
+
+    public void feed(FoodScript food)
+    {
+        if (canEat.Contains(food.species))
+        {
+            hunger = hunger + food.value;
+        }
+    }
 
 
     void grow()

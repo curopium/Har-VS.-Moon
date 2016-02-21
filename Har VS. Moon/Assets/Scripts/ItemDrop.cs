@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(BoxCollider2D))]
 public class ItemDrop : MonoBehaviour {
 
     private Vector3 mousePosition;
