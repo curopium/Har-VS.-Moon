@@ -13,6 +13,7 @@ public class BudScript : MonoBehaviour {
         plantObject = parent.GetComponent<PlantObject>();
 
         //Debug.Log("Trigger: " );
+        Debug.Log("ahhh!");
 	}
 	
 	// Update is called once per frame
