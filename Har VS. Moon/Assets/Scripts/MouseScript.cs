@@ -56,7 +56,7 @@ public class MouseScript : MonoBehaviour {
 		}
 	}
 
-	public void setActiveItem(GameObject newActiveObject){
+	public void setActiveItem(Item newActiveObject){
 
 	}
 
