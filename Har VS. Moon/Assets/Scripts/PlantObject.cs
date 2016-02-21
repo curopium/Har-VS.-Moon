@@ -47,6 +47,7 @@ public class PlantObject : MonoBehaviour {
         stage4.SetActive(false);
         item.SetActive(false);
         hungryIcon.SetActive(false);
+        seed.SetActive(false);
 
         worldManager = GameObject.Find("World").GetComponent<WorldManager>();
 	}
@@ -59,7 +60,6 @@ public class PlantObject : MonoBehaviour {
             timer += worldManager.getDeltaTime();
             if ((timer > 10.0f))
             {
-
                 grow();
 
             }

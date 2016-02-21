@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(BoxCollider2D))]
 public class ItemDrop : MonoBehaviour {
 
     private Vector3 mousePosition;
@@ -22,7 +23,7 @@ public class ItemDrop : MonoBehaviour {
     void OnMouseDrag()
     {
         //Debug.Log("hello");
-        Debug.Log("Held");
+        //Debug.Log("Held");
         mousePosition = Input.mousePosition;
         mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
         transform.position = Vector2.Lerp(transform.position, mousePosition, moveSpeed);
