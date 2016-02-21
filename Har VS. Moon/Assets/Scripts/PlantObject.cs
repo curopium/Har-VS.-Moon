@@ -23,6 +23,7 @@ public class PlantObject : MonoBehaviour {
     public GameObject stage4;
     public GameObject item;
     public GameObject hungryIcon;
+    public GameObject seed;
 
     public int growTime1;
     public int growTime2;
