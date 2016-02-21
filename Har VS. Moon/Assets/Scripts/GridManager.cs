@@ -247,7 +247,9 @@ public class GridManager : MonoBehaviour
             Tile tile = findTile(_gridPos);
 
             tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
-            //tile.plantObject.transform.position = tile.tileObject.transform.position;
+            PlantObject plantScript = tile.plantObject.GetComponent<PlantObject>();
+            //hacky solution
+            plantScript.hungerRate = 2;
         }
         else if (type == "mouse")
         {
@@ -264,6 +266,11 @@ public class GridManager : MonoBehaviour
             Tile tile = findTile(_gridPos);
 
             tile.plantObject = (GameObject)Instantiate(plant, new Vector2(tile.tileObject.transform.position.x, tile.tileObject.transform.position.y), Quaternion.identity);
+            PlantObject plantScript = tile.plantObject.GetComponent<PlantObject>();
+            //hacky solution
+            plantScript.hungerRate = 2;
+
+            //tile.plantObject.
             //tile.plantObject.transform.position = tile.tileObject.transform.position;
         }
     }

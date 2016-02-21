@@ -11,7 +11,10 @@ public class PlantObject : MonoBehaviour {
     public int hp;
     public float hunger;
     public float hungerRate;
+
     public bool isHungry;
+    //private bool gethungry = false;
+
     public float starving;
     public int age;
     public int currentStage;
@@ -43,6 +46,7 @@ public class PlantObject : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        //gethungry = isHungry;
         currentStage = 1;
 		harvestedProduct = new Item(species);
         growing = true;
@@ -87,28 +91,37 @@ public class PlantObject : MonoBehaviour {
 
     void grow()
     {
-        
-        hunger = hunger - hungerRate;
 
-        if(currentStage == 3)
-        {
-            if (hunger < starving)
-           {
-                age = age - 1;
-                hp = hp - 1;
-                hungryIcon.SetActive(true);
-                isHungry = true;
-           }
-           else
-           {
-               if (hp < 100)
-               {
-                   hp = hp + 1;
-               }
-                hungryIcon.SetActive(false);
-                isHungry = false;
-           }
-      }
+
+        //if (gethungry)
+        //{
+
+            if (currentStage == 3)
+            {
+                hunger = hunger - hungerRate;
+                if (hunger < starving)
+                {
+                    age = age - 1;
+                    hp = hp - 1;
+                    hungryIcon.SetActive(true);
+                    isHungry = true;
+
+                    if (hunger == 0)
+                    {
+                        Destroy(gameObject);
+                    }
+                }
+                else
+                {
+                    if (hp < 100)
+                    {
+                        hp = hp + 1;
+                    }
+                    hungryIcon.SetActive(false);
+                    isHungry = false;
+                }
+            }
+        //}
         timer = 0;
         
 
