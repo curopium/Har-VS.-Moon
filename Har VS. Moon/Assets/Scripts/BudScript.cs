@@ -12,8 +12,6 @@ public class BudScript : MonoBehaviour {
         parent = transform.parent.gameObject;
         plantObject = parent.GetComponent<PlantObject>();
 
-        //Debug.Log("Trigger: " );
-        Debug.Log("ahhh!");
 	}
 	
 	// Update is called once per frame

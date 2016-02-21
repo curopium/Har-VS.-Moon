@@ -130,6 +130,14 @@ public class GridManager : MonoBehaviour
 
     public void createGrid()
     {
+        tileObject = GameObject.Find("Ground");
+
+        if (tileObject == null)
+        {
+            Debug.Log("Ground not found");
+            return;
+        }
+
         Debug.Log("build");
         for (float x = 0; x < gridHeight; x++)
         {
