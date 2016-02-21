@@ -32,7 +32,7 @@ public class MouseScript : MonoBehaviour {
 		tileSize = tileObject.GetComponent<Renderer>().bounds.size.x;
 		GameObject inventoryObject = GameObject.Find ("InventoryObject");
 		inventory = inventoryObject.GetComponent<Inventory> ();
-		activeItem = new Item ();
+		activeItem = null;
 	}
 	
 	// Update is called once per frame
@@ -56,10 +56,15 @@ public class MouseScript : MonoBehaviour {
 				}
 			}
 		}
+		if (Input.GetMouseButton (0) == true) {
+			mouseDown = true;
+		} else {
+			mouseDown = false;
+		}
 	}
 
 	public void setActiveItem(Item newActiveObject){
-
+		activeItem = newActiveObject;
 	}
 
 	private Vector2 calcGridPos(Vector2 worldPos)

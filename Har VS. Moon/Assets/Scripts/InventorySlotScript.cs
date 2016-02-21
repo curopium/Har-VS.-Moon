@@ -35,6 +35,7 @@ public class InventorySlotScript : MonoBehaviour {
 				plObject.stage4.SetActive (false);
 				plObject.item.SetActive (false);
 				plObject.seed.SetActive (true);
+				plObject.growing = false;
 			} else if (itemToSet.species == "grass") {
 				GameObject item = GameObject.Find ("Grass");
 				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
@@ -45,6 +46,7 @@ public class InventorySlotScript : MonoBehaviour {
 				plObject.stage4.SetActive (false);
 				plObject.item.SetActive (false);
 				plObject.seed.SetActive (true);
+				plObject.growing = false;
 			}
 		} else {
 			if (itemToSet.species == "light") {
@@ -57,6 +59,7 @@ public class InventorySlotScript : MonoBehaviour {
 				plObject.stage4.SetActive (false);
 				plObject.item.SetActive (true);
 				plObject.seed.SetActive (false);
+				plObject.growing = false;
 			} else if (itemToSet.species == "grass") {
 				GameObject item = GameObject.Find ("Grass");
 				itemObject = (GameObject)Instantiate (item, new Vector2 (gameObject.transform.position.x, gameObject.transform.position.y), Quaternion.identity);
@@ -67,6 +70,7 @@ public class InventorySlotScript : MonoBehaviour {
 				plObject.stage4.SetActive (false);
 				plObject.item.SetActive (true);
 				plObject.seed.SetActive (false);
+				plObject.growing = false;
 			}
 		}
 	}

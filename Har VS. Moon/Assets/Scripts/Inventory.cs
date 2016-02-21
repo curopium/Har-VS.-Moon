@@ -30,6 +30,11 @@ public class Inventory : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		print ("items");
+		print (items.Count);
+		print ("slots");
+		print (slots.Count);
+
 		RefreshList ();
 	}
 
@@ -53,6 +58,9 @@ public class Inventory : MonoBehaviour {
 			items.Add (addedItem);
 			items.Capacity = capacity;
 			print (items.Capacity);
+			//Update slots
+			int index = items.Count - 1;
+			slots [index].setItem (addedItem);
 			print ("Count: ");
 			print (items.Count);
 			return true;
@@ -171,6 +179,6 @@ public class Inventory : MonoBehaviour {
 		float x = gridPos.x * tileSize;
 		float y = (gridPos.y + 1) * (-tileSize);
 
-		return new Vector3(x, y, 11);
+		return new Vector3(x, y, 9);
 	}
 }
