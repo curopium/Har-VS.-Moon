@@ -7,11 +7,13 @@ public class MoonScript : MonoBehaviour {
     public float endTime;
     public GameObject startPosition;
     public GameObject endPosition;
+    public GameObject moonObject;
     public bool gameEnded = false;
 
 	// Use this for initialization
 	void Start () {
-        
+        endTime *= world.speed;
+        moonObject.transform.position = startPosition.transform.position;
 	}
 	
 	// Update is called once per frame
@@ -21,11 +23,12 @@ public class MoonScript : MonoBehaviour {
         {
             if(currentTime >= endTime)
             {
+                moonObject.transform.position = endPosition.transform.position;
                 gameEnded = true;
             }
             else
             {
-                transform.position = Vector3.Lerp(startPosition.transform.position, endPosition.transform.position, currentTime / endTime);
+                moonObject.transform.position = Vector3.Lerp(startPosition.transform.position, endPosition.transform.position, (currentTime / endTime));
             }
         }
 	}
