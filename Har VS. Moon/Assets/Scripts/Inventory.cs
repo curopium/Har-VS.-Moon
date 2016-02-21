@@ -7,9 +7,9 @@ public class Inventory : MonoBehaviour {
 	public List<InventorySlotScript> slots = new List<InventorySlotScript> (10);
 	public int capacity = 10;
 
-	private int slotIndex = 0;
-	public int gridWidth = 10;
-	public int gridHeight = 1;
+	public int gridWidth = 5;
+	public int gridHeight = 2;
+	public float tileSize;
 	public GameObject slotObject;
 
 	public Inventory(){
@@ -24,6 +24,8 @@ public class Inventory : MonoBehaviour {
 			Debug.Log("Slot not found");
 			return;
 		}
+
+		createGrid ();
 	}
 	
 	// Update is called once per frame
@@ -120,35 +122,51 @@ public class Inventory : MonoBehaviour {
 		return (((int)y * gridWidth) + (int)x);
 	}
 
-	/*public void createGrid()
+	public void createGrid()
 	{
-		Debug.Log("build");
-		for (float x = 0; x < gridHeight; x++)
+		setSize (10, 1);
+		for (float x = 0; x < gridWidth; x++)
 		{
-			for (float y = 0; y < gridWidth; y++)
+			for (float y = 0; y < gridHeight; y++)
 			{
 
 				//Current position in grid
 				Vector2 gridPos = new Vector2(x, y);
 
-				GameObject newSlot = new GameObject();
-				newSlot.slotObject.SetActive(false);
+				GameObject newSlotObject = (GameObject)Instantiate(slotObject, Vector2.zero, Quaternion.identity);
+				InventorySlotScript slotScript = newSlotObject.AddComponent<InventorySlotScript> () as InventorySlotScript;
+				slotScript.gridPos = gridPos;
+				//Debug.Log (gridPos.ToString ());
 
-				newSlot.slotObject = (GameObject)Instantiate(slotObject, Vector2.zero, Quaternion.identity);
-				InventorySlotScript slotScript = newSlot.slotObject.AddComponent<InventorySlotScript> () as InventorySlotScript;
-				slotScript.tile = newSlot;
-
-				if (newSlot == null) {
-					Debug.Log ("Tile is null");
+				if (newSlotObject == null || slotScript == null) {
+					Debug.Log ("Slot is null");
 					return;
 				}
 
-
-
-				slots.Add(newSlot);
-
-				slotIndex++;
+				slots.Add (newSlotObject.GetComponent<InventorySlotScript> ());
 			}
 		}
-	}*/
+		capacity = gridWidth * gridHeight;
+		slots.Capacity = capacity;
+		items.Capacity = capacity;
+
+		//Draw the grid
+		GameObject slotGrid = new GameObject("HexInventorySlotGrid");
+		tileSize = slotObject.GetComponent<Renderer>().bounds.size.x;
+
+		foreach (InventorySlotScript slot in slots)
+		{
+			slot.gameObject.SetActive(true);
+			slot.gameObject.transform.position = calcWorldCoordinate(slot.gridPos);
+			slot.gameObject.transform.parent = slotGrid.transform;
+		}
+	}
+
+	private Vector3 calcWorldCoordinate(Vector2 gridPos)
+	{
+		float x = gridPos.x * tileSize;
+		float y = (gridPos.y + 1) * (-tileSize);
+
+		return new Vector3(x, y, 11);
+	}
 }

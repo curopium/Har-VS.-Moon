@@ -2,13 +2,9 @@
 using System.Collections;
 
 public class InventorySlotScript : MonoBehaviour {
-	public GameObject slotObject;
 	public MouseScript mouseScript;
 	public Item itemInSlot = null;
-
-	public InventorySlotScript(GameObject _slotObject){
-		slotObject = _slotObject;
-	}
+	public Vector2 gridPos;
 
 	public InventorySlotScript(){
 		
