@@ -56,6 +56,10 @@ public class MouseScript : MonoBehaviour {
 		}
 	}
 
+	public void setActiveItem(GameObject newActiveObject){
+
+	}
+
 	private Vector2 calcGridPos(Vector2 worldPos)
 	{
 		Vector2 gridPos = new Vector2();
@@ -68,9 +72,11 @@ public class MouseScript : MonoBehaviour {
 	//Receive message with grid position if tile is empty and released over
 	//If item is seed, plant seed in relevant tile of appropriate species
 	void mouseReleasedOverEmptyTile(Vector2 gridPos){
-		if (activeItem.itemType == "seed") {
-			gridController.plant (activeItem.species, gridPos);
-			activeItem = null;
+		if (activeItem != null) {
+			if (activeItem.seedState == true) {
+				gridController.plant (activeItem.species, gridPos);
+				activeItem = null;
+			}
 		}
 	}
 

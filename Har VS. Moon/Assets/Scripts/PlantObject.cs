@@ -16,6 +16,8 @@ public class PlantObject : MonoBehaviour {
     public bool growing;
     public GameObject currentPlantObject;
     //public List<GameObject> plantObjects = new List<GameObject>();
+	public string species;
+	public Item harvestedProduct;
 
     public GameObject stage1;
     public GameObject stage2;
@@ -38,6 +40,7 @@ public class PlantObject : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+		harvestedProduct = new Item(species);
         growing = true;
         age = 0;
         timer = 0;

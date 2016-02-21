@@ -4,18 +4,19 @@ using System.Collections;
 public class Item{
 	//Plant species: light, tree, mouse, snake, bird
 	public string species = "light";
-	//Item types: seed, harvested
-	public string itemType = "seed";
+	//Item types: seed, product
+	//public string itemType = "seed";
+	public bool seedState = true;
 	public int quantity = 1;
 
-	public Item(string iSpecies = "light", string iType = "seed", int iQuantity = 1){
+	public Item(string iSpecies = "light", bool iSeed = false, int iQuantity = 1){
 		species = iSpecies;
-		itemType = iType;
+		seedState = iSeed;
 		quantity = iQuantity;
 	}
 
 	public bool compareItems(Item itemToCompare){
-		return ((itemType == itemToCompare.itemType) && (species == itemToCompare.species));
+		return ((seedState == itemToCompare.seedState) && (species == itemToCompare.species));
 	}
 
 	public bool addItems(Item itemtoAdd){
@@ -34,7 +35,7 @@ public class Item{
 				removequantity = quantity;
 			}
 			quantity -= removequantity;
-			return new Item (species, itemType, removequantity);
+			return new Item (species, seedState, removequantity);
 		} else {
 			return null;
 		}
@@ -43,7 +44,7 @@ public class Item{
 	public Item removeItem(){
 		if (quantity > 0) {
 			quantity -= 1;
-			return new Item (species, itemType, 1);
+			return new Item (species, seedState, 1);
 		} else {
 			return null;
 		}
