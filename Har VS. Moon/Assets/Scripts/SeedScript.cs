@@ -48,6 +48,7 @@ public class SeedScript : MonoBehaviour {
 
     void OnMouseUp()
     {
+        Debug.Log("plant!");
         //if (Input.GetMouseButtonDown(0) == false)
         //{
             //if over tile

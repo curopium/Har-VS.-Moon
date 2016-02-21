@@ -11,7 +11,7 @@ public class WorldManager : MonoBehaviour {
 	void Start () {
         //time += Time.deltaTime;
         //speed = 1;
-        cheese = 100;
+        //cheese = 100;
         
 	}
 

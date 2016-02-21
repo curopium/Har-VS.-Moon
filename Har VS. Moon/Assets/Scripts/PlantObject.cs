@@ -43,6 +43,7 @@ public class PlantObject : MonoBehaviour {
     
 	// Use this for initialization
 	void Start () {
+        currentStage = 1;
 		harvestedProduct = new Item(species);
         growing = true;
         age = 0;
@@ -88,16 +89,26 @@ public class PlantObject : MonoBehaviour {
     {
         
         hunger = hunger - hungerRate;
-        if (hunger < starving)
+
+        if(currentStage == 3)
         {
-            hungryIcon.SetActive(true);
-            isHungry = true;
-        }
-        else
-        {
-            hungryIcon.SetActive(false);
-            isHungry = false;
-        }
+            if (hunger < starving)
+           {
+                age = age - 1;
+                hp = hp - 1;
+                hungryIcon.SetActive(true);
+                isHungry = true;
+           }
+           else
+           {
+               if (hp < 100)
+               {
+                   hp = hp + 1;
+               }
+                hungryIcon.SetActive(false);
+                isHungry = false;
+           }
+      }
         timer = 0;
         
 
@@ -105,6 +116,7 @@ public class PlantObject : MonoBehaviour {
         if (age == growTime1)
         {
             currentPlantObject = stage2;
+            currentStage = 2;
 
             stage1.SetActive(false);
             stage2.SetActive(true);
@@ -113,12 +125,14 @@ public class PlantObject : MonoBehaviour {
         if (age == growTime2)
         {
             currentPlantObject = stage3;
+            currentStage = 3;
 
             stage2.SetActive(false);
             stage3.SetActive(true);
         }
         if (age == growTime3)
         {
+            currentStage = 4;
             currentPlantObject = stage4;
             stage3.SetActive(false);
             stage4.SetActive(true);
