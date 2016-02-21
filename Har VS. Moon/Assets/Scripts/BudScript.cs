@@ -22,10 +22,10 @@ public class BudScript : MonoBehaviour {
 	}
 
 
-    void OnCollisionEnter2D(Collision2D col)
+    void OnTriggerEnter2D(Collider2D col)
     {
         //plantObject.feed( 
-        Debug.Log("ahhh!");
+        //Debug.Log("ahhh!");
         currentFood = col.gameObject.GetComponent<FoodScript>();
         if (currentFood)
         {
